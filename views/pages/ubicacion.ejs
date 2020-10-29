@@ -1,52 +1,24 @@
 <!DOCTYPE html>
 <html>
-    <head>
+  <head>
     <!-- Partial HEAD -->
     <%- include('../partials/head'); %> 
-    <title>Ubicación</title>
-<!-- Agregar estilos al body & h1--> -->
-<!-- <link rel='stylesheet' href='/stylesheets/style.css'/>-->
- <style >
-  body { 
-font:  10px;
-text-align: justify;
-background-color: rgb(6, 17, 24);
-}
-footer p{
-    font-style: italic;
-    font-size:medium;
-    color: whitesmoke;
-    text-align: center;
-}
-</style>
-<script type="text/javascript">
-    window.onload = function() {
-      L.mapquest.key = 'QAYBwG3dCFCXiiDQp7oNVhJUcvN1Hqwc';
+        <title>geo</title>
+    <!-- Agregar estilos al body  -->
+    <link rel="stylesheet" href="stylesheets/style.css">
+  </head>
 
-      var map = L.mapquest.map('map', {
-        center: [21.4426096,-100.7132386],
-        layers: L.mapquest.tileLayer('map'),
-        zoom: 12
-      });
-
-      map.addControl(L.mapquest.control());
-    }
-  </script>
-
-    </head>
-    <body >
+  <body style="border: 0; margin: 0px 0px ;">
     <!--Partial Menú-->
     <%- include('../partials/navbar'); %>
-        <div id= "contenido">
-            <div id= "map" style="width: 100%; height: 300px;">
-        
-            </div>
+    <div id="map" style="width: 100%; height: 530px;"></div>
 
-        <!--Partial Scripts-->
-         <%- include('../partials/script'); %> 
-    </body>
-    <footer>
-        <!--Partial Footer-->
-         <%- include('../partials/footer'); %> 
-    </footer>
+
+    <%- include('../partials/scriptgeo'); %>
+
+  </body>
+  <footer>
+    <!--Partial Footer-->
+     <%- include('../partials/footer'); %> 
+</footer>
 </html>

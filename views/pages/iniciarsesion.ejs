@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <!--Partial HEAD -->
+    <%- include('../partials/head'); %>
+        <!-- Agregar estilos al body  -->
+        <link rel="stylesheet" href="stylesheets/style.css">
+<title>iniciar sesión</title>
+    </head>
+    <body id="ba">
+    <!--Partial Menú Navbar-->
+    <%- include('../partials/navbar'); %>
+    <!-- Formulario para iniciar sesión -->
+          <div class="row">
+            <div class="col-sm-5">
+              <div class="container">
+              <div class="img">
+                  <img src="/images/logo1.png" class="img-fluid" alt="Responsive image" style="width:500px" alt="Image">
+                  </div>
+              </div>
+            </div>
+            <div class="col-sm-7">
+            <div class="container">
+              <h2>Iniciar Sesión</h2>
+              <form action="users/login.js" method="POST" >
+                <div class="form-group">
+                  <label for="email">Correo Electrónico:</label>
+                  <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo Electrónico">
+                </div>
+                <div class="form-group">
+                  <label for="pwd">Contraseña:</label>
+                  <input type="password" class="form-control" id="pass" name="pass" placeholder="Ingresa Contraseña">
+                </div>
+                </div>
+                <br>
+                <button type="submit" class= "btn btn-dark btn-lg" >Ingresar </button>  <button type="button"  class="btn btn-light btn-lg" data-toggle="modal" data-target="#myModal">Solicitar Registro</button>
+                <br>
+                <br>
+                
+                <h6>Iniciar sesion con:</h6>
+                <br>
+                <br>
+                <fb:login-button scope="public_profile,email"onlogin="checkLoginState();"> </fb:login-button> <!--Botón para iiciar sesión con fb-->
+
+              </form>
+            </div>
+        </div>
+             </div>
+             
+      
+      
+      
+        <!-- Trigger the modal with a button -->
+        <!-- pantalla emergente para registro -->
+       <div class="col-sm">
+            <div class="container"> 
+              <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Solicitar Registro</button>
+                <br>                --> 
+              <!-- Modal -->
+              <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog ">
+                  <div class="modal-content">
+                    <div class="modal-header">  
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                    
+                    <div class="container"> 
+                      <form id="singup" >
+                        <h2>Solicitar Registro</h2>
+                        <img src="/images/logo1.png" alt="logo" class="rounded-circle">
+                        <div class="form-group">
+                          <label for="usr">Nombre:</label>
+                          <input type="text" class="form-control" id="Nombre" name="Nombre">
+                        </div>
+                        <div class="form-group">
+                          <label for="usr">Apellido Paterno:</label>
+                          <input type="text" class="form-control" id="ApePat" name="ApePat">
+                        </div>
+                        <div class="form-group">
+                          <label for="usr">Apellido Materno:</label>
+                          <input type="text" class="form-control" id="ApeMat" name="ApeMat">
+                        </div>
+                        <div class="form-group">
+                          <label for="email">Correo Electrónico</label>
+                          <input type="email" class="form-control" placeholder="email@gmail.com" id="email" name="email" >
+                        </div>
+                        <div class="form-group">
+                          <label for="pwd">Contraseña</label>
+                          <input type="password" class="form-control" placeholder="***" id="pwd" name="pwd">
+                        </div>
+                        </div>
+                        <br>
+                        <div>
+                          <h6 id ="he">Acuerdo con los terminos y condiciones</h6>
+                          <a href="url">Haga click para leer condiciones del sitio</a>
+                          <div class="checkbox">
+                            <label><input type="checkbox" value="" >Estoy de acuerdo</label>
+                          </div>
+                        </div><br>
+                        <button type="button" class="btn btn-primary active" onclick="agregar();">Registrarme </button>
+                      </form>
+                    </div>
+                  </div> 
+                </div> 
+              </div> 
+            </div>
+        </div>
+      
+
+          
+        
+
+        <!--Partial Scripts-->
+         <%- include('../partials/script'); %> 
+         <script>
+          window.fbAsyncInit = function() {
+              FB.init({
+                  appId      : '560989368013265',
+                  cookie     : true,
+                  xfbml      : true,
+                  version    : 'v8.0'
+              });  
+              FB.AppEvents.logPageView();     
+              };
+              (function(d, s, id){
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) {return;}
+              js = d.createElement(s); js.id = id;
+              js.src = "https://connect.facebook.net/en_US/sdk.js";
+              fjs.parentNode.insertBefore(js, fjs);
+              }(document, 'script', 'facebook-jssdk'));
+      
+              window.onload = function() {
+                  FB.getLoginStatus(function(response) {
+                  statusChangeCallback(response);
+                  });
+                   function checkLoginState() {
+                  FB.getLoginStatus(function(response) {
+                   statusChangeCallback(response);
+                   });}
+              };
+          </script>
+    </body>
+    <footer>
+        <!--Partial Footer-->
+         <%- include('../partials/footer'); %> 
+    </footer>
+</html>

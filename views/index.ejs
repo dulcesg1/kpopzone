@@ -3,6 +3,8 @@
   <head>
     <!--Partial HEAD -->
     <%- include('partials/head'); %>
+    <!-- Agregar estilos al body  -->
+    <link rel="stylesheet" href="stylesheets/style.css">
 
   </head>
   <body>
@@ -10,11 +12,11 @@
    <%- include('partials/navbar'); %>
 
    <div class="jumbotron">
-    <h1 class="display-4">Bienvenido a NodeJS & Express!</h1>
-    <p class="lead">Este es un ejemplo básico</p>
+    <h1 class="display-4">Bienvenido a KPOPZONE!</h1>
+    <p class="lead">Un sitio dedicado al KPOP</p>
     <hr class="my-4">
-    <p>Mi primer sitio básico con Express</p>
-    <a class="btn btn-dark btn-lg" href="#" role="button">Learn more</a>
+    <p>Estas son las noticias del momento</p>
+    <a class="btn btn-dark btn-lg" href="/acercade" role="button">Learn more</a>
   </div>  
 
 </div>
@@ -22,4 +24,8 @@
   <!--Partial Scripts-->
   <%- include('partials/script'); %>
   </body>
+  <footer>
+    <!--Partial Footer-->
+     <%- include('partials/footer'); %> 
+</footer>
 </html>

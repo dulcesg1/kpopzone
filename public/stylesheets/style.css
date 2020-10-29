@@ -1,13 +1,62 @@
 
 body {
-  padding: 50px;
+  /* margin: 50px;
+  padding: 50px; */
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color:  rgb(6, 17, 24);
+  font:  10px;
+  text-align: justify;
+   background-image: url('/images/background.jpg'); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.row{
+padding: 20px;
+ color:whitesmoke;
+ size: 12pt;;
+} 
+#bo{
+  font:  10px;
+  text-align: justify;
+  background-image: url('/images/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+    font-size: x-large;
+    font-style: normal;
+    color:whitesmoke;
+    text-align:justify;
+}
+#h{
+  font-style:normal;
+  color: whitesmoke;
+  text-align: center;
+}
+#p{
+  margin: 50px;
+  font-size: x-large;
+  font-style: normal;
+  color: whitesmoke;
+  text-align:justify;
+
 }
 
+ #singup,#he{
+  background-position: center;
+  color: palevioletred;
+  
+}
+#image{
+  display: block;
+  margin: auto;
+  
+}
 a {
   color: rgb(83, 194, 238);
 }
+/* p{
+  background-color: #C7A8C9;
+} */
 .bg-3 {
   background-color: #ffffff;
   color: #555555;
@@ -17,13 +66,13 @@ a {
   padding-bottom: 70px;
   }
   .navbar {
-  padding-top: 15px;
-  padding-bottom: 15px;
+  /* padding-top: 15px;
+  padding-bottom: 15px; */
   border: 0;
   border-radius: 0;
   margin-bottom: 0;
-  font-size: 12px;
-  letter-spacing: 2px;
+  font-size: 13px;
+  /* letter-spacing: 2px; */
   font-family: Arial, Helvetica, sans-serif;
   }
   .navbar-nav li a:hover {
@@ -33,3 +82,18 @@ a {
   color: #1abc9c !important;
   ;
   }
+  #pie{
+    margin: 50px 0px 0px;
+    padding-block-end: 20px;
+    clear: both; 
+    background: rgb(13, 13, 15);
+    text-align: center ;
+    color: whitesmoke;
+    
+    }
+    #fo{
+      text-align: center;
+      color: whitesmoke;
+      size: 15pt;
+    }
+    
