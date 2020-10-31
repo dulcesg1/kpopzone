@@ -1,13 +1,65 @@
 <!--Scripts-->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script
-src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.j
-s"></script>
-<script
-src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min
-.js"></script>
+src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="./javascripts/menu.js"></script>
+<!-- twitter widgets -->
+<script src="https://platform.twitter.com/widgets.js"></script>
+<!-- Google script sign in  -->
+<!-- <script>
+function onSignIn(googleUser) {
+    const id_token = googleUser.getAuthResponse().id_token;
+    const profile = googleUser.getBasicProfile();
+    $("#g-signin2").css("display","none");
+    $("#data").css("display","block");
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    console.log('Token: ' + id_token); 
+  }
+  function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        $("#g-signin2").css("display","block");
+    $("#data").css("display","none");
+        console.log('User signed out.');
+      });
+    }
+</script> -->
 
+<!--Script de Stripe-->
+<script type="text/javascript">
+    // Create an instance of the Stripe object with your publishable API key
+    var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+    var checkoutButton = document.getElementById('checkout-button');
+
+    checkoutButton.addEventListener('click', function() {
+      // Create a new Checkout Session using the server-side endpoint you
+      // created in step 3.
+      fetch('/create-checkout-session', {
+        method: 'POST',
+      })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(session) {
+        return stripe.redirectToCheckout({ sessionId: session.id });
+      })
+      .then(function(result) {
+        // If `redirectToCheckout` fails due to a browser or network
+        // error, you should display the localized error message to your
+        // customer using `error.message`.
+        if (result.error) {
+          alert(result.error.message);
+        }
+      })
+      .catch(function(error) {
+        console.error('Error:', error);
+      });
+    });
+  </script>
  <!-- Facebook -->
  <script>
     window.fbAsyncInit = function() {
@@ -37,4 +89,5 @@ src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min
              });}
         };
     </script>
-
+<!-- Ubicación de las cokies-->
+<!-- <script id="CookieDeclaration" src="https://consent.cookiebot.com/9463e099-ca2e-4d38-9a19-58e63f5d1f20/cd.js" type="text/javascript" async></script> -->

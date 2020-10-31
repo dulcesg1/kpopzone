@@ -25,6 +25,23 @@ router.get('/bienvenida', function(req, res, next) {
 router.get('/geo', function(req, res, next) {
   res.render('pages/geo', { page: 'geo', menuId: 'geo' });
 });
+/* Ruta nueva a youtube*/
+router.get('/youtube', function(req, res, next) {
+  res.render('pages/youtube', { page: 'youtube', menuId: 'youtube' });
+});
+/* Ruta nueva a home*/
+router.get('/home', function(req, res, next) {
+  res.render('pages/home', { page: 'home', menuId: 'home' });
+});
+/* Ruta nueva a blinks*/
+router.get('/blinks', function(req, res, next) {
+  res.render('pages/blinks', { page: 'blinks', menuId: 'blinks' });
+});
+/* Ruta nueva a Ecommerce*/
+router.get('/obtener', function(req, res, next) {
+  res.render('pages/obtener', { page: 'obtener', menuId: 'obtener' });
+});
+
  //Método POST
  router.post('/',function(req,res){
    res.send('Tengo una petición con POST');

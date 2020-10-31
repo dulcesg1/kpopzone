@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Partial HEAD -->
+    <%- include('../partials/head'); %> 
+        <title>geo</title>
+    <!-- Agregar estilos al body  -->
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script>
+    window.onSpotifyWebPlaybackSDKReady = () => {
+      const userAccessToken = "[access token]";
+      const webPlayback = new Spotify.Player({
+        name: "Spotify Web Playback SDK",
+        getOAuthToken: callback => { callback(userAccessToken)}
+      });
+      webPlayback.connect();
+    };
+    </script>
+    
+  </head>
+
+  <body >
+    <!--Partial Menú-->
+    <%- include('../partials/navbar'); %>
+    <div id="Spotify Web Playback SDK"></div>
+
+
+
+<!--Partial Script-->
+    <%- include('../partials/script'); %>
+  </body>
+  <footer>
+    <!--Partial Footer-->
+     <%- include('../partials/footer'); %> 
+</footer>
+</html>

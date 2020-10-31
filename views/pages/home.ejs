@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Partial HEAD -->
+    <%- include('../partials/head'); %>
+    <!-- Agregar estilos al body  -->
+    <link rel="stylesheet" href="stylesheets/style.css">
+
+</head>
+  <body style="margin:0">
+ <!--Partial Menú--> 
+ <%- include('../partials/navbar'); %>
+ <p>
+    <div class="jumbotron">
+        <h1 class="display-4">Lo más reciente</h1>
+      </div>
+ </p>
+ <div class="jumbotron">
+    <h4 class="display-5">COMEBACK de CL</h4>
+    <iframe src="https://open.spotify.com/embed/track/5cIv45SvGnNrARU6rT2BCb" width="311" height="391" frameborder="0" allowtransparency="true" allow="encrypted-media" id="sp"></iframe>
+  </div>
+ <div class="jumbotron">
+    <h4 class="display-5">THE BADDEST</h4>
+    <iframe src="https://open.spotify.com/embed/track/2V4Fx72svQRxrFvNT1eq5f" width="311" height="391" frameborder="0" allowtransparency="true" allow="encrypted-media" id="sp"></iframe>
+  </div>
+ <div class="jumbotron">
+ <h4 class="display-5">K/DA para LOL</h4>
+ <iframe src="https://open.spotify.com/embed/track/6juLaduD4STCUDWT0AYun4" width="311" height="391" frameborder="0" allowtransparency="true" allow="encrypted-media" id="sp"></iframe>
+</div>
+  <div class="jumbotron">
+    <h4 class="display-5">COMEBACK de TWICE</h4>
+     <iframe src="https://open.spotify.com/embed/track/37ZtpRBkHcaq6hHy0X98zn" width="311" height="391" frameborder="0" allowtransparency="true" allow="encrypted-media" id="sp"></iframe>
+   </div>
+   <div class="jumbotron">
+   <h4 class="display-5">COMEBACK de MAMAMOO</h4>
+   <iframe src="https://open.spotify.com/embed/track/0bDYceyQd1jnJO4sK47YxU" width="311" height="391" frameborder="0" allowtransparency="true" allow="encrypted-media" id="sp"></iframe>
+ </div>
+
+
+
+  <!--Partial Scripts-->
+  <%- include('../partials/script'); %>
+  </body>
+  <footer>
+    <!--Partial Footer-->
+     <%- include('../partials/footer'); %> 
+</footer>
+</html>

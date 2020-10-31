@@ -40,8 +40,11 @@
                 <h6>Iniciar sesion con:</h6>
                 <br>
                 <br>
-                <fb:login-button scope="public_profile,email"onlogin="checkLoginState();"> </fb:login-button> <!--Botón para iiciar sesión con fb-->
-
+                <fb:login-button scope="public_profile,email"onlogin="checkLoginState();"> </fb:login-button> <!--Botón para iniciar sesión con fb-->
+              <!--Button de Google-->
+                <!-- <div class="g-signin2" id="g-signin2" data-onsuccess="onSignIn"></div>
+                <a class="btn btn-danger" id="data" onclick="signOut();" style="display:none">Sign out</a> -->
+               
               </form>
             </div>
         </div>
@@ -112,34 +115,7 @@
 
         <!--Partial Scripts-->
          <%- include('../partials/script'); %> 
-         <script>
-          window.fbAsyncInit = function() {
-              FB.init({
-                  appId      : '560989368013265',
-                  cookie     : true,
-                  xfbml      : true,
-                  version    : 'v8.0'
-              });  
-              FB.AppEvents.logPageView();     
-              };
-              (function(d, s, id){
-              var js, fjs = d.getElementsByTagName(s)[0];
-              if (d.getElementById(id)) {return;}
-              js = d.createElement(s); js.id = id;
-              js.src = "https://connect.facebook.net/en_US/sdk.js";
-              fjs.parentNode.insertBefore(js, fjs);
-              }(document, 'script', 'facebook-jssdk'));
       
-              window.onload = function() {
-                  FB.getLoginStatus(function(response) {
-                  statusChangeCallback(response);
-                  });
-                   function checkLoginState() {
-                  FB.getLoginStatus(function(response) {
-                   statusChangeCallback(response);
-                   });}
-              };
-          </script>
     </body>
     <footer>
         <!--Partial Footer-->

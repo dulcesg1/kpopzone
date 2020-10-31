@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Partial HEAD -->
+    <%- include('../partials/head'); %>
+    <!-- Agregar estilos al body  -->
+    <link rel="stylesheet" href="stylesheets/style.css">
+
+    <script src="https://3p.ampproject.net/2010132225003/f.js"></script>
+    <script charset="utf-8" src="https://platform.twitter.com/js/horizon_tweet.716ef7f4c155526f8ec8e60dbd2fbf56.js"></script>
+    <script>
+    if (window.docEndCallback) 
+    window.docEndCallback()
+    </script>
+    <script>draw3p()</script>
+</head>
+  <body style="margin:0">
+ <!--Partial Menú--> 
+ <%- include('../partials/navbar'); %>
+ <p>
+ </p>
+    <div id="c" style="position:absolute;top:0;left:0;bottom:0;right:0;">
+    <div id="tweet" style="width: 100%; display: flex; align-items: center; justify-content: center;">
+    <div class="twitter-tweet twitter-tweet-rendered" style="display: flex; max-width: 550px; width: 100%; margin-top: 10px; margin-bottom: 10px;">
+    <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="" style="position: static; visibility: visible; width: 550px; height: 749px; display: block; flex-grow: 1;" title="Twitter Tweet" src="https://platform.twitter.com/embed/index.html?dnt=false&amp;embedId=twitter-widget-0&amp;frame=false&amp;hideCard=false&amp;hideThread=false&amp;id=1322266570291249152&amp;lang=en&amp;origin=https%3A%2F%2Fd-30895937431366172638.ampproject.net%2F2010132225003%2Fframe.html&amp;theme=light&amp;widgetsVersion=ed20a2b%3A1601588405575&amp;width=550px" data-tweet-id="1310232797408186368">
+    </iframe>
+    </div>
+    </div>
+    </div>
+    <iframe scrolling="no" frameborder="0" allowtransparency="true" src="https://platform.twitter.com/widgets/widget_iframe.96fd96193cc66c3e11d4c5e4c7c7ec97.html?origin=https%3A%2F%2Fd-30895937431366172638.ampproject.net" title="Twitter settings iframe" style="display: none;"></iframe>
+    <iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" title="Twitter analytics iframe"></iframe>
+
+  <!--Partial Scripts-->
+  <%- include('../partials/script'); %>
+  </body>
+  <footer>
+    <!--Partial Footer-->
+     <%- include('../partials/footer'); %> 
+</footer>
+</html>
