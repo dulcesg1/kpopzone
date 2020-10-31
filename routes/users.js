@@ -33,9 +33,12 @@ router.post('/login',function (req, res, next) {
   var password=req.body.password;
   //Busca un registro mediante el email
   User.find({email,password}, (err, user) => {
-  if (err) res.status(400).send(err);
+  if (err) {res.status(400).redirect('/login');}
+  else if(user=="" || !user){
+    res.redirect('/login');
+  }else{
   res.status(200).redirect('/home');
-  
+  }
   });
 });
 
