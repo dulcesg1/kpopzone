@@ -32,7 +32,7 @@ router.post('/login',function (req, res, next) {
   var email=req.body.email;
   var password=req.body.password;
   //Busca un registro mediante el email
-  User.findBy({email,password}, (err, user) => {
+  User.find({email,password}, (err, user) => {
   if (err) res.status(400).send(err);
   res.status(200).redirect('/home');
   
