@@ -31,8 +31,8 @@ app.post('/create-checkout-session', async (req, res) => {
       },
     ],
     mode: 'payment',
-    success_url: 'http://localhost:3000/home',
-    cancel_url: 'http://localhost:3000/',
+    success_url: 'https://kpopzone.herokuapp.com/',
+    cancel_url: 'https://kpopzone.herokuapp.com/home',
   });
 
   res.json({ id: session.id });
