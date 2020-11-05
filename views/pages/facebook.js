@@ -50,7 +50,6 @@
 		  FB.api('/me', function(response) {
 			$('#loginf').after(div_session);
 			$('#loginf').remove();
-			$('#inise').remove();
 			$('#facebook-session strong').text("Bienvenido: "+response.name);
 			$('#facebook-session img').attr('src','http://graph.facebook.com/'+response.id+'/picture?type=large');
 		  });
