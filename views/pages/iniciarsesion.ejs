@@ -7,6 +7,18 @@
         <link rel="stylesheet" href="stylesheets/style.css">
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script src="/facebook.js"></script>
+        <style>         
+strong, img {
+	display: block;
+}
+img {
+	margin: 0 auto;
+	border-radius: 10px;
+}
+#logout {
+	margin-top: 10px;}
+        </style>
+
 <title>iniciar sesión</title>
     </head>
     <body id="ba">
@@ -36,11 +48,11 @@
                 </div>
                 </div>
                 <br>
-                <button type="submit" class= "btn btn-dark btn-lg" >Ingresar </button>  <button type="button"  class="btn btn-light btn-lg" data-toggle="modal" data-target="#myModal">Solicitar Registro</button>
+                <button type="submit" class= "btn btn-dark btn-lg" >Ingresar </button>  <button type="button"  class="btn btn-light btn-lg" data-toggle="modal" data-target="#myModal" id="sin">Solicitar Registro</button>
                 <br>
                 <br>
                 
-                <h6>Iniciar sesion con:</h6>
+                <h6 id ="l">Iniciar sesion con:</h6>
                 <br>
                 <br>
                 <!--Botón para iniciar sesión con fb-->
@@ -165,8 +177,10 @@
     FB.api('/me', function(response) {
     $('#loginf').after(div_session);
     $('#loginf').remove();
+    $('#inise','#sin','#l','.row').remove();
     $('#facebook-session strong').text("Bienvenido: "+response.name);
     $('#facebook-session img').attr('src','http://graph.facebook.com/'+response.id+'/picture?type=large');
+    
     });
   }
 
