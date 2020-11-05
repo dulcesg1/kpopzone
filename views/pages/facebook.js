@@ -4,7 +4,7 @@
 	  var app_id = '560989368013265';
 	  var scopes = 'email';
 	
-	  var btn_loginf = '<a href="#" id="loginf" class="btn btn-primary">Facebook</a>';
+	  var btn_loginf = '<a href="#" id="loginf" class="btn btn-primary"> Facebook</a>';
 	
 	  var div_session = "<div id='facebook-session'>"+
 				"<strong></strong>"+
@@ -24,7 +24,9 @@
 	
 	
 		  FB.getLoginStatus(function(response) {
-			statusChangeCallback(response, function() {});
+			statusChangeCallback(response, function() {
+
+			});
 		  });
 		};
 	
@@ -46,8 +48,8 @@
 	
 		var getFacebookData =  function() {
 		  FB.api('/me', function(response) {
-			$('#login').after(div_session);
-			$('#login').remove();
+			$('#loginf').after(div_session);
+			$('#loginf').remove();
 			$('#facebook-session strong').text("Bienvenido: "+response.name);
 			$('#facebook-session img').attr('src','http://graph.facebook.com/'+response.id+'/picture?type=large');
 		  });
@@ -61,7 +63,7 @@
 				  getFacebookData();
 			  }, {scope: scopes});
 			}
-		  });
+		  })
 		}
 	
 		var facebookLogout = function() {

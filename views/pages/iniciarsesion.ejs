@@ -116,7 +116,7 @@
          <%- include('../partials/script'); %> 
 
          <script>
-           $(function() {
+  $(function() {
 	
   var app_id = '560989368013265';
   var scopes = 'email';
@@ -163,8 +163,8 @@
 
   var getFacebookData =  function() {
     FB.api('/me', function(response) {
-    $('#login').after(div_session);
-    $('#login').remove();
+    $('#loginf').after(div_session);
+    $('#loginf').remove();
     $('#facebook-session strong').text("Bienvenido: "+response.name);
     $('#facebook-session img').attr('src','http://graph.facebook.com/'+response.id+'/picture?type=large');
     });
@@ -178,7 +178,7 @@
         getFacebookData();
       }, {scope: scopes});
     }
-    });
+    })
   }
 
   var facebookLogout = function() {
@@ -187,9 +187,9 @@
     FB.logout(function(response) {
       $('#facebook-session').before(btn_loginf);
       $('#facebook-session').remove();
-    });
+    })
     }
-    });
+    })
 
   }
 
@@ -206,9 +206,9 @@
     facebookLogout();
     else 
     return false;
-  });
+  })
 
-});
+})
 
           // Load the SDK asynchronously
             (function(d, s, id) {
