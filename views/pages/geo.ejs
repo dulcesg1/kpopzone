@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <title>Geo</title>
+  <head>
+    <!--Partial HEAD -->
+    <%- include('../partials/head'); %>
+    <!-- Agregar estilos al body  -->
+    <link rel="stylesheet" href="stylesheets/style.css">
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?"></script> 
+ <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmCeN-vuBz6UcWS_qzmtq-6ID43RM9q-w"type="text/javascript"></script>  -->
+</head>
+
+  <body style="border: 0; margin: 0px 0px ;">
+ <!--Partial Menú--> 
+ <%- include('../partials/navbar'); %>
+ <div id="mapa" style="width: 100%; height: 530px;">
+
+ </div>
+
+
+ <script type="text/javascript">
+    //NAMESPACE
+    var divMapa= document.getElementById('mapa');
+    navigator.geolocation.getCurrentPosition(fn_ok, fn_mal);
+    function fn_mal(){}
+    function fn_ok(rta){
+        var lat=rta.coords.latitude;
+        var lon=rta.coords.longitude;
+
+       var gLatLon = new google.maps.LatLng(lat, lon);
+       var objConfig={
+           zoom:17,
+           center:gLatLon
+       }
+       var gMapa = new google.maps.Map(divMapa, objConfig);
+       var objConfigMarker= {
+           position: gLatLon,
+           map:gMapa, 
+           title:"Usted se encuentra aquí"
+
+       }
+       var gMarker= new google.maps.Marker(objConfigMarker);
+    }
+</script>
+      
+
+  <!--Partial Scripts-->
+  <%- include('../partials/script'); %>
+  
+  </body>
+  <footer>
+    <!--Partial Footer-->
+     <%- include('../partials/footer'); %> 
+</footer>
+</html>

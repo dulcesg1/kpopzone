@@ -41,6 +41,10 @@ router.get('/blinks', function(req, res, next) {
 router.get('/obtener', function(req, res, next) {
   res.render('pages/obtener', { page: 'obtener', menuId: 'obtener' });
 });
+/* Ruta nueva a Google Maps*/
+router.get('/geo', function(req, res, next) {
+  res.render('pagesgeo', { page: 'geo', menuId: 'geo' });
+});
 
  //Método POST
  router.post('/',function(req,res){
