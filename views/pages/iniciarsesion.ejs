@@ -5,15 +5,14 @@
     <%- include('../partials/head'); %>
         <!-- Agregar estilos al body  -->
         <link rel="stylesheet" href="stylesheets/style.css">
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="/facebook.js"></script>
 <title>iniciar sesión</title>
     </head>
     <body id="ba">
 
     <!--Partial Menú Navbar-->
     <%- include('../partials/navbar'); %>
-    
-    <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v8.0&appId=560989368013265&autoLogAppEvents=1" nonce="r9OxV3d1"></script>
     <!-- Formulario para iniciar sesión -->
           <div class="row">
             <div class="col-sm-5">
@@ -45,14 +44,8 @@
                 <br>
                 <br>
                 <!--Botón para iniciar sesión con fb-->
-                <a href="#" id="login" class="btn btn-primary"> Facebook</a>
+                <a href="#" id="loginf" class="btn btn-primary"> Facebook</a>
                 
-                 
-                 <!--Botón para Spotify--> <a class="btn btn-dark" href="#">Log in Spotify</a>
-                
-                <!--Button de Google-->
-                <!-- <div class="g-signin2" id="g-signin2" data-onsuccess="onSignIn"></div>
-                <a class="btn btn-danger" id="data" onclick="signOut();" style="display:none">Sign out</a> -->
                
               </form>
             </div>
@@ -66,9 +59,6 @@
         <!-- pantalla emergente para registro -->
        <div class="col-sm">
             <div class="container"> 
-              <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Solicitar Registro</button>
-                <br>                --> 
-              <!-- Modal -->
               <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog ">
                   <div class="modal-content">
@@ -109,7 +99,7 @@
                             <label><input type="checkbox" value="" >Estoy de acuerdo</label>
                           </div>
                         </div><br>
-                        <input type="submit" class="btn btn-primary active" >Registrarme </button>
+                        <input type="submit" class="btn btn-primary active">Registrarme </input>
                       </form>
                     </div>
                   </div> 
@@ -124,104 +114,102 @@
 
         <!--Partial Scripts-->
          <%- include('../partials/script'); %> 
+
          <script>
-          $(function() {
-          
-            var app_id = '560989368013265';
-            var scopes = 'email,  default';
-          
-            var btn_loginf = '<a href="#" id="login" class="btn btn-primary">Facebook</a>';
-          
-            var div_session = "<div id='facebook-session'>"+
-                      "<strong></strong>"+
-                      "<img>"+
-                      "<a href='#' id='logout' class='btn btn-danger'>Cerrar sesión</a>"+
-                      "</div>";
-          
-            window.fbAsyncInit = function() {
-          
-                FB.init({
-                  appId      : 560989368013265,
-                  status     : true,
-                  cookie     : true, 
-                  xfbml      : true, 
-                  version    : 'v8.0'
-                });
-          
-          
-                FB.getLoginStatus(function(response) {
-                  statusChangeCallback(response, function() {});
-                });
-              };
-          
-              var statusChangeCallback = function(response, callback) {
-                console.log(response);
-                 
-                if (response.status === 'connected') {
-                    getFacebookData();
-                } else {
-                   callback(false);
-                }
-              }
-          
-              var checkLoginState = function(callback) {
-                FB.getLoginStatus(function(response) {
-                    callback(response);
-                });
-              }
-          
-              var getFacebookData =  function() {
-                FB.api('/me', function(response) {
-                  $('#login').after(div_session);
-                  $('#login').remove();
-                  $('#facebook-session strong').text("Bienvenido: "+response.name);
-                  $('#facebook-session img').attr('src','http://graph.facebook.com/'+response.id+'/picture?type=large');
-                });
-              }
-          
-              var facebookLogin = function() {
-                checkLoginState(function(data) {
-                  if (data.status !== 'connected') {
-                    FB.login(function(response) {
-                      if (response.status === 'connected')
-                        getFacebookData();
-                    }, {scope: scopes});
-                  }
-                })
-              }
-          
-              var facebookLogout = function() {
-                checkLoginState(function(data) {
-                  if (data.status === 'connected') {
-                  FB.logout(function(response) {
-                    $('#facebook-session').before(btn_login);
-                    $('#facebook-session').remove();
-                  })
-                }
-                })
-          
-              }
-          
-          
-          
-              $(document).on('click', '#login', function(e) {
-                e.preventDefault();
-          
-                facebookLogin();
-              })
-          
-              $(document).on('click', '#logout', function(e) {
-                e.preventDefault();
-          
-                if (confirm("¿Está seguro?"))
-                  facebookLogout();
-                else 
-                  return false;
-              })
-          
-          })
-          </script>
-         <script>
+           $(function() {
+	
+  var app_id = '560989368013265';
+  var scopes = 'email';
+
+  var btn_loginf = '<a href="#" id="loginf" class="btn btn-primary">Facebook</a>';
+
+  var div_session = "<div id='facebook-session'>"+
+      "<strong></strong>"+
+      "<img>"+
+      "<a href='#' id='logout' class='btn btn-danger'>Cerrar sesión</a>"+
+      "</div>";
+
+  window.fbAsyncInit = function() {
+
+    FB.init({
+    appId      : app_id,
+    status     : true,
+    cookie     : true, 
+    xfbml      : true, 
+    version    : 'v8.0'
+    });
+
+
+    FB.getLoginStatus(function(response) {
+    statusChangeCallback(response, function() {});
+    });
+  };
+
+  var statusChangeCallback = function(response, callback) {
+    console.log(response);
+     
+    if (response.status === 'connected') {
+      getFacebookData();
+    } else {
+     callback(false);
+    }
+  }
+
+  var checkLoginState = function(callback) {
+    FB.getLoginStatus(function(response) {
+      callback(response);
+    });
+  }
+
+  var getFacebookData =  function() {
+    FB.api('/me', function(response) {
+    $('#login').after(div_session);
+    $('#login').remove();
+    $('#facebook-session strong').text("Bienvenido: "+response.name);
+    $('#facebook-session img').attr('src','http://graph.facebook.com/'+response.id+'/picture?type=large');
+    });
+  }
+
+  var facebookLogin = function() {
+    checkLoginState(function(data) {
+    if (data.status !== 'connected') {
+      FB.login(function(response) {
+      if (response.status === 'connected')
+        getFacebookData();
+      }, {scope: scopes});
+    }
+    });
+  }
+
+  var facebookLogout = function() {
+    checkLoginState(function(data) {
+    if (data.status === 'connected') {
+    FB.logout(function(response) {
+      $('#facebook-session').before(btn_loginf);
+      $('#facebook-session').remove();
+    });
+    }
+    });
+
+  }
+
+  $(document).on('click', '#loginf', function(e) {
+    e.preventDefault();
+
+    facebookLogin();
+  })
+
+  $(document).on('click', '#logout', function(e) {
+    e.preventDefault();
+
+    if (confirm("¿Está seguro?"))
+    facebookLogout();
+    else 
+    return false;
+  });
+
+});
+
           // Load the SDK asynchronously
             (function(d, s, id) {
               var js, fjs = d.getElementsByTagName(s)[0];
