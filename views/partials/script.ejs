@@ -4,6 +4,8 @@
 src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="./javascripts/menu.js"></script>
+<!--Jquery-->
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <!-- twitter widgets -->
 <script src="https://platform.twitter.com/widgets.js"></script>
 <!-- Google script sign in  -->
@@ -61,7 +63,7 @@ function onSignIn(googleUser) {
     });
   </script>
  <!-- Facebook -->
- <script>
+ <!-- <script>
     window.fbAsyncInit = function() {
         FB.init({
             appId      : '560989368013265',
@@ -78,6 +80,7 @@ function onSignIn(googleUser) {
         js.src = "https://connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
+    
 
         window.onload = function() {
             FB.getLoginStatus(function(response) {
@@ -88,6 +91,22 @@ function onSignIn(googleUser) {
              statusChangeCallback(response);
              });}
         };
-    </script>
+    </script> -->
+    <!--Script para iniciar sesión con Spotify--->
+    <!-- <script id="loggedin-template" type="text/x-handlebars-template">
+      
+      <h1>Logged in as </h1>
+      <img id="avatar" width="200" src="" />
+      <dl>
+       <dt>Display name</dt><dd></dd>
+       <dt>Username</dt><dd></dd>
+       <dt>Email</dt><dd></dd>
+       <dt>Spotify URI</dt><dd><a href=""></a></dd>
+       <dt>Link</dt><dd><a href=""></a></dd>
+       <dt>Profile Image</dt><dd></dd>
+      </dl>
+      <p><a href="/">Log in again</a></p>
+   </script> -->
+   
 <!-- Ubicación de las cokies-->
 <!-- <script id="CookieDeclaration" src="https://consent.cookiebot.com/9463e099-ca2e-4d38-9a19-58e63f5d1f20/cd.js" type="text/javascript" async></script> -->

@@ -8,8 +8,12 @@
 <title>iniciar sesión</title>
     </head>
     <body id="ba">
+
     <!--Partial Menú Navbar-->
     <%- include('../partials/navbar'); %>
+    
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v8.0&appId=560989368013265&autoLogAppEvents=1" nonce="r9OxV3d1"></script>
     <!-- Formulario para iniciar sesión -->
           <div class="row">
             <div class="col-sm-5">
@@ -40,8 +44,13 @@
                 <h6>Iniciar sesion con:</h6>
                 <br>
                 <br>
-                <fb:login-button scope="public_profile,email"onlogin="checkLoginState();"> </fb:login-button> <!--Botón para iniciar sesión con fb-->
-              <!--Button de Google-->
+                <!--Botón para iniciar sesión con fb-->
+                <a href="#" id="login" class="btn btn-primary"> Facebook</a>
+                
+                 
+                 <!--Botón para Spotify--> <a class="btn btn-dark" href="#">Log in Spotify</a>
+                
+                <!--Button de Google-->
                 <!-- <div class="g-signin2" id="g-signin2" data-onsuccess="onSignIn"></div>
                 <a class="btn btn-danger" id="data" onclick="signOut();" style="display:none">Sign out</a> -->
                
@@ -115,6 +124,113 @@
 
         <!--Partial Scripts-->
          <%- include('../partials/script'); %> 
+         <script>
+          $(function() {
+          
+            var app_id = '560989368013265';
+            var scopes = 'email,  default';
+          
+            var btn_loginf = '<a href="#" id="login" class="btn btn-primary">Facebook</a>';
+          
+            var div_session = "<div id='facebook-session'>"+
+                      "<strong></strong>"+
+                      "<img>"+
+                      "<a href='#' id='logout' class='btn btn-danger'>Cerrar sesión</a>"+
+                      "</div>";
+          
+            window.fbAsyncInit = function() {
+          
+                FB.init({
+                  appId      : 560989368013265,
+                  status     : true,
+                  cookie     : true, 
+                  xfbml      : true, 
+                  version    : 'v8.0'
+                });
+          
+          
+                FB.getLoginStatus(function(response) {
+                  statusChangeCallback(response, function() {});
+                });
+              };
+          
+              var statusChangeCallback = function(response, callback) {
+                console.log(response);
+                 
+                if (response.status === 'connected') {
+                    getFacebookData();
+                } else {
+                   callback(false);
+                }
+              }
+          
+              var checkLoginState = function(callback) {
+                FB.getLoginStatus(function(response) {
+                    callback(response);
+                });
+              }
+          
+              var getFacebookData =  function() {
+                FB.api('/me', function(response) {
+                  $('#login').after(div_session);
+                  $('#login').remove();
+                  $('#facebook-session strong').text("Bienvenido: "+response.name);
+                  $('#facebook-session img').attr('src','http://graph.facebook.com/'+response.id+'/picture?type=large');
+                });
+              }
+          
+              var facebookLogin = function() {
+                checkLoginState(function(data) {
+                  if (data.status !== 'connected') {
+                    FB.login(function(response) {
+                      if (response.status === 'connected')
+                        getFacebookData();
+                    }, {scope: scopes});
+                  }
+                })
+              }
+          
+              var facebookLogout = function() {
+                checkLoginState(function(data) {
+                  if (data.status === 'connected') {
+                  FB.logout(function(response) {
+                    $('#facebook-session').before(btn_login);
+                    $('#facebook-session').remove();
+                  })
+                }
+                })
+          
+              }
+          
+          
+          
+              $(document).on('click', '#login', function(e) {
+                e.preventDefault();
+          
+                facebookLogin();
+              })
+          
+              $(document).on('click', '#logout', function(e) {
+                e.preventDefault();
+          
+                if (confirm("¿Está seguro?"))
+                  facebookLogout();
+                else 
+                  return false;
+              })
+          
+          })
+          </script>
+         <script>
+          // Load the SDK asynchronously
+            (function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "https://connect.facebook.net/en_US/sdk.js";
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+           </script>
       
     </body>
     <footer>

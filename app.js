@@ -5,6 +5,24 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var InitiateMongoServer = require("./config/db");
 var bodyParser = require('body-parser');
+// server de Spotify
+  /* Load the HTTP library */
+  var http = require("http");
+
+  /* Create an HTTP server to handle responses */
+
+  http.createServer(function(request, response) {
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.write("Hello World");
+    response.end();
+  }).listen(8888);
+
+// variables para Spotify
+var client_id = 'ef4231a22ac94c86a603fa1d40dc238a'; // Your client id
+var client_secret = '96366db736c54b408e19dfa3acf887c4'; // Your secret
+var redirect_uri = 'http://localhost:3000/home'; // Your redirect uri
+
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
