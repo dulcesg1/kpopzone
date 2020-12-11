@@ -13,7 +13,7 @@ var mensaje= '';
 router.get('/',function(req, res, next){
     // Consumir mediante RESTAPI
 
-    request.get("http://localhost:4000/escritos/", (error, response, body)=>{
+    request.get("https://microservicioskpop.herokuapp.com/escritos/", (error, response, body)=>{
     
     mensaje= '';
     if(error){ // En caso de que surga un error
@@ -71,7 +71,7 @@ router.post('/add', function(req, res, next) {
     Descripcion: Descripcion,
     ISBN: ISBN
     }
-    request.get({ url: "http://localhost:4000/escritos/"+Id_Escrito }, (error, response, body)=>{
+    request.get({ url: "https://microservicioskpop.herokuapp.com/escritos/"+Id_Escrito }, (error, response, body)=>{
     
         mensaje= '';
         if(error){ // En caso de que surga un error
@@ -82,7 +82,7 @@ router.post('/add', function(req, res, next) {
         console.log(JSON.parse(body)+mensaje);
         let escritos=JSON.parse(body);
         if(escritos==null || escritos==""){
-            request.get({ url: "http://localhost:4000/autor/"+Id_Autor }, (error, response, body)=>{
+            request.get({ url: "https://microservicioskpop.herokuapp.com/autor/"+Id_Autor }, (error, response, body)=>{
                 console.log("Autor"+JSON.parse(body));
         let autor=JSON.parse(body);
         console.log(autor);
@@ -94,9 +94,20 @@ router.post('/add', function(req, res, next) {
                 }
               
             mensaje="El numero de id autor no esta registrado";
-           
+            res.render('escritos/add',{
+                mensaje:mensaje,
+                tittle: 'Agregar un escrito', // Título de la página
+                Id_Escrito:'',// Datos del escrito
+                Id_Autor: '',
+                Id_Libro: '',
+                Descripcion:'',
+                ISBN:'',
+                menuId: 'escritos',
+                page: 'escritos',
+        
+            });
             }else{
-                request.get({ url: "http://localhost:4000/libro/"+Id_Libro }, (error, response, body)=>{
+                request.get({ url: "https://microservicioskpop.herokuapp.com/libro/"+Id_Libro }, (error, response, body)=>{
                     console.log("Libro: "+JSON.parse(body));
             let libro=JSON.parse(body);
             console.log(libro);
@@ -108,9 +119,22 @@ router.post('/add', function(req, res, next) {
                 }
               
             mensaje="El numero de id libro no esta registrado";
+            res.render('escritos/add',{
+                mensaje:mensaje,
+                tittle: 'Agregar un escrito', // Título de la página
+                Id_Escrito:'',// Datos del escrito
+                Id_Autor: '',
+                Id_Libro: '',
+                Descripcion:'',
+                ISBN:'',
+                menuId: 'escritos',
+                page: 'escritos',
+        
+            });
+
             }else{
                 console.log("Dontro else esscrito");
-                request.post({ url: "http://localhost:4000/escritos", json: datosForma },
+                request.post({ url: "https://microservicioskpop.herokuapp.com/escritos", json: datosForma },
                 (error, response, body) => {
                
                mensaje = 'El dato se ha agregado con éxito';
@@ -155,7 +179,7 @@ router.get('/editar/:Id_Escrito', (req, res) => {
     console.log(mensaje);
     var escritosFind;
     //Busca si existe el escritos de acuerdo al Id_Escrito
-    URI = "http://localhost:4000/escritos/" + Id_Escrito;
+    URI = "https://microservicioskpop.herokuapp.com/escritos/" + Id_Escrito;
     console.log('URI: ' + URI);
     request.get(URI, (error, response, body) => {
     mensaje = '';
@@ -198,7 +222,7 @@ Descripcion: Descripcion,
 ISBN: ISBN
 }
 //Invoca al Microservicio de modificar
-request.put({ url: "http://localhost:4000/escritos", json: datosForma },
+request.put({ url: "https://microservicioskpop.herokuapp.com/escritos", json: datosForma },
 (error, response, body) => {
 mensaje = 'El dato se ha modificado con éxito';
 if (error) {
@@ -217,7 +241,7 @@ router.get('/delete/:Id_Escrito', (req, res) => {
     console.log(mensaje);
     if (Id_Escrito) {
     //Invoca al Microservicio
-    URI = "http://localhost:4000/escritos/" + Id_Escrito;
+    URI = "https://microservicioskpop.herokuapp.com/escritos/" + Id_Escrito;
     request.delete(URI, (error, response, body) => {
     mensaje = 'El dato se ha eliminado con éxito';
     if (error) {

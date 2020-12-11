@@ -7,7 +7,7 @@ var mensaje= '';
 router.get('/',function(req, res, next){
     // Consumir mediante RESTAPI
 
-    request.get("http://localhost:4000/libro/", (error, response, body)=>{
+    request.get("https://microservicioskpop.herokuapp.com/libro/", (error, response, body)=>{
     
     mensaje= '';
     if(error){ // En caso de que surga un error
@@ -38,7 +38,7 @@ router.get('/add',(req,res)=>{
         Titulo: '',
         Categoria: '',
         Editorial:'',
-        FechaPulicacion:'',
+        FechaPublicacion:'',
         menuId: 'libro',
         page: 'libro',
 
@@ -53,7 +53,7 @@ router.post('/add', function(req, res, next) {
     let Titulo = req.body.Titulo;
     let Categoria = req.body.Categoria;
     let Editorial = req.body.Editorial;
-    let FechaPulicacion = req.body.FechaPulicacion;
+    let FechaPublicacion = req.body.FechaPublicacion;
     let errors = false;
     // Si no hay errores
     if (!errors) {
@@ -63,9 +63,9 @@ router.post('/add', function(req, res, next) {
     Titulo: Titulo,
     Categoria: Categoria,
     Editorial: Editorial,
-    FechaPulicacion: FechaPulicacion
+    FechaPublicacion: FechaPublicacion
     }
-    request.get({ url: "http://localhost:4000/libro/"+Id_Libro }, (error, response, body)=>{
+    request.get({ url: "https://microservicioskpop.herokuapp.com/libro/"+Id_Libro }, (error, response, body)=>{
     
         mensaje= '';
         if(error){ // En caso de que surga un error
@@ -83,12 +83,12 @@ router.post('/add', function(req, res, next) {
                 Titulo: '',
                 Categoria: '',
                 Editorial:'',
-                FechaPulicacion:'',
+                FechaPublicacion:'',
                 menuId: 'libro',
                 page: 'libro'
                 });
         }else{
-            request.post({ url: "http://localhost:4000/libro", json: datosForma },
+            request.post({ url: "https://microservicioskpop.herokuapp.com/libro", json: datosForma },
             (error, response, body) => {
            
            mensaje = 'El dato se ha agregado con éxito';
@@ -114,7 +114,7 @@ router.get('/editar/:Id_Libro', (req, res) => {
     console.log(mensaje);
     var libroFind;
     //Busca si existe el libro de acuerdo al Id_Libro
-    URI = "http://localhost:4000/libro/" + Id_Libro;
+    URI = "https://microservicioskpop.herokuapp.com/libro/" + Id_Libro;
     console.log('URI: ' + URI);
     request.get(URI, (error, response, body) => {
     mensaje = '';
@@ -132,7 +132,7 @@ router.get('/editar/:Id_Libro', (req, res) => {
     Titulo: JSON.parse(body).Titulo,
     Categoria: JSON.parse(body).Categoria,
     Editorial: JSON.parse(body).Editorial,
-    FechaPulicacion: JSON.parse(body).FechaPulicacion,
+    FechaPublicacion: JSON.parse(body).FechaPublicacion,
     menuId: 'libro',
     page: 'libro'
     });
@@ -157,7 +157,7 @@ Titulo: Titulo,
 Editorial: Editorial
 }
 //Invoca al Microservicio de modificar
-request.put({ url: "http://localhost:4000/libro", json: datosForma },
+request.put({ url: "https://microservicioskpop.herokuapp.com/libro", json: datosForma },
 (error, response, body) => {
 mensaje = 'El dato se ha modificado con éxito';
 if (error) {
@@ -176,7 +176,7 @@ router.get('/delete/:Id_Libro', (req, res) => {
     console.log(mensaje);
     if (Id_Libro) {
     //Invoca al Microservicio
-    URI = "http://localhost:4000/libro/" + Id_Libro;
+    URI = "https://microservicioskpop.herokuapp.com/libro/" + Id_Libro;
     request.delete(URI, (error, response, body) => {
     mensaje = 'El dato se ha eliminado con éxito';
     if (error) {

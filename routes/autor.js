@@ -13,7 +13,7 @@ var mensaje= '';
 router.get('/',function(req, res, next){
     // Consumir mediante RESTAPI
 
-    request.get("http://localhost:4000/autor/", (error, response, body)=>{
+    request.get("https://microservicioskpop.herokuapp.com/autor/", (error, response, body)=>{
     
     mensaje= '';
     if(error){ // En caso de que surga un error
@@ -71,7 +71,7 @@ router.post('/add', function(req, res, next) {
     ApellidoMat: ApellidoMat,
     FechaNacimiento: FechaNacimiento
     }
-    request.get({ url: "http://localhost:4000/autor/"+Id_Autor }, (error, response, body)=>{
+    request.get({ url: "https://microservicioskpop.herokuapp.com/autor/"+Id_Autor }, (error, response, body)=>{
     
         mensaje= '';
         if(error){ // En caso de que surga un error
@@ -94,7 +94,7 @@ router.post('/add', function(req, res, next) {
                 page: 'autor'
                 });
         }else{
-            request.post({ url: "http://localhost:4000/autor", json: datosForma },
+            request.post({ url: "https://microservicioskpop.herokuapp.com/autor", json: datosForma },
             (error, response, body) => {
            
            mensaje = 'El dato se ha agregado con éxito';
@@ -120,7 +120,7 @@ router.get('/editar/:Id_Autor', (req, res) => {
     console.log(mensaje);
     var AutorFind;
     //Busca si existe el autor de acuerdo al Id_Autor
-    URI = "http://localhost:4000/autor/" + Id_Autor;
+    URI = "https://microservicioskpop.herokuapp.com/autor/" + Id_Autor;
     console.log('URI: ' + URI);
     request.get(URI, (error, response, body) => {
     mensaje = '';
@@ -163,7 +163,7 @@ Nombre: Nombre,
 ApellidoPat: ApellidoPat
 }
 //Invoca al Microservicio de modificar
-request.put({ url: "http://localhost:4000/autor", json: datosForma },
+request.put({ url: "https://microservicioskpop.herokuapp.com/autor", json: datosForma },
 (error, response, body) => {
 mensaje = 'El dato se ha modificado con éxito';
 if (error) {
@@ -182,7 +182,7 @@ router.get('/delete/:Id_Autor', (req, res) => {
     console.log(mensaje);
     if (Id_Autor) {
     //Invoca al Microservicio
-    URI = "http://localhost:4000/autor/" + Id_Autor;
+    URI = "https://microservicioskpop.herokuapp.com/autor/" + Id_Autor;
     request.delete(URI, (error, response, body) => {
     mensaje = 'El dato se ha eliminado con éxito';
     if (error) {
