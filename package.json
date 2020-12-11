@@ -12,8 +12,9 @@
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
-    "mongoose": "^5.10.9",
+    "mongoose": "^5.11.7",
     "morgan": "~1.9.1",
+    "request": "^2.88.2",
     "stripe": "^8.119.0"
   },
   "devDependencies": {

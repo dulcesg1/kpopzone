@@ -5,6 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var InitiateMongoServer = require("./config/db");
 var bodyParser = require('body-parser');
+var autorRouter = require('./routes/autor');
+var escritosRouter= require('./routes/escritos');
+var libroRouter=require('./routes/libro');
+//var AutorRouter=require('./views/autor/index');
 // server de Spotify
   /* Load the HTTP library */
   var http = require("http");
@@ -27,6 +31,7 @@ var redirect_uri = 'http://localhost:3000/home'; // Your redirect uri
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var acercadeRouter= require('./routes/acercade');
+
 
 const app = express();
 // Set your secret key. Remember to switch to your live secret key in production!
@@ -75,8 +80,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/acercade',acercadeRouter);
-
-
+app.use('/autor', autorRouter);
+app.use('/libro', libroRouter);
+app.use('/escritos',escritosRouter);
+//app.use('./index', AutorRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Partial HEAD -->
+    <%- include('../partials/head'); %>
+    <!-- Agregar estilos al body  -->
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+   <!--Partial Menú-->
+   <%- include('../partials/navbar'); %>
+
+   <div class="jumbotron">
+    <h1 class="display-4">Bienvenido a KPOPZONE!</h1>
+    <p class="lead">Un sitio dedicado al KPOP</p>
+    <hr class="my-4">
+    <!--Tabla de Autores-->
+    <div class="card">
+      <div class="card-header">
+        <ul class="nav nav-pills w-100">
+          <li class="nav-pill active">
+            <a class="nav-link">Listado de Escritos</a>
+          </li>
+            <a class="nav-link active" href="/escritos/add">Agregar</a>
+        </ul>
+      </div>
+    </div>
+    <table id="tablaEscritos" class="display" style="width:100%">
+      <thead>
+      <tr>
+      <th>Id_Escrito</th>
+      <th>Id_Autor</th>
+      <th>Id_Libro</th>
+      <th>Descripcion</th>
+      <th>ISBN</th>
+     
+      <th>&nbsp;</th>
+      </tr>
+      </thead>
+      <tbody><!--Modifica la vista para desplegar la información -->
+          <% if(data.length > 0){ %>
+          <% for (var i=0 ; i < data.length ; i++){ %>
+          <tr>
+          <td>
+          <%= data[i].Id_Escrito%>
+          </td>
+          <td>
+          <%= data[i].Id_Autor%>
+          </td>
+          <td>
+          <%= data[i].Id_Libro%>
+          </td>
+          <td>
+          <%= data[i].Descripcion%>
+          </td>
+          <td>
+          <%= data[i].ISBN%>
+          </td>
+          <td><a class="btn btn-success edit" href="../escritos/editar/<%=data[i].Id_Libro%>">Editar</i></a><a class="btn btn-danger" onclick="return alert('¿Estas seguro de eliminar el dato?')" href="../escritos/delete/<%=data[i].Id_Escrito%>"> Eliminar</a></td>
+          </tr>
+          <% } %>
+          <% } %>
+          
+    
+      </tbody>
+      </table>
+
+    <a class="btn btn-dark btn-lg" href="/acercade" role="button">Ver más...</a>
+  </div>  
+</div>
+<div id="player"></div>
+<section id="buscar">
+  <script async src="https://cse.google.com/cse.js?cx=7460bd1a45343e989"></script>
+<div class="gcse-search"></div>
+</section>
+    <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '360',
+          width: '640',
+          videoId: '2ips2mM7Zqw',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, 1000000);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+        function onPlayerReady(event) {
+  
+  event.target.playVideo();
+}
+      }
+    </script>
+<div class="jumbotron">
+  <h1 class="display-4">COMEBACK BTS Proximamente</h1>
+  <p class="lead">El comeback de BTS con el álbum 'BE' podría tener varios significados,<br> muchos fans encontraron diversas conexiones interesantes.</p>
+  <hr class="my-4">
+  <p>Una teoría apunta a que ‘BE’ podría ser parte de una saga de discos y que el título oficial del comeback sería ‘BE YOURSELF’, agregado las versiones ‘YOUR’ y ‘SELF’,<br>
+  no es la primera vez que los chicos presentan este formato, la era ‘Love Yourself’ se publicó bajo la misma idea.</p>
+  <img src="/images/com.jpg" width="400" height="250" id="image"/>
+  <br>
+
+  <a class="btn btn-dark btn-lg" href="/youtube" role="button">Ver más...</a>
+</div>  
+</div>   <div class="jumbotron">
+  <h1 class="display-4">Icónico baile de Lisa</h1>
+  <p class="lead">Las blinks están locas con el baile de Lisa</p>
+  <hr class="my-4">
+  <p></p>
+  <a class="btn btn-dark btn-lg" href="/blinks" role="button">Ver más...</a>
+</div>  
+</div>
+<iframe src="https://open.spotify.com/embed/track/0u5FYJWJLcLzSN9S1Wb2ag" width="311" height="391" frameborder="0" allowtransparency="true" allow="encrypted-media" id ="sp"></iframe>
+
+  <!--Partial Scripts-->
+  <%- include('../partials/script'); %>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-Consumiendo microservicios con NodeJSPágina 8 de 15ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+<script src="/javascripts/escritos.js"></script>
+  </body>
+  <footer>
+    <!--Partial Footer-->  
+     <%- include('../partials/footer'); %> 
+</footer>
+</html>

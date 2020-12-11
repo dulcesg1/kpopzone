@@ -43,8 +43,10 @@ router.get('/obtener', function(req, res, next) {
 });
 /* Ruta nueva a Google Maps*/
 router.get('/geo', function(req, res, next) {
-  res.render('pagesgeo', { page: 'geo', menuId: 'geo' });
+  res.render('pages/geo', { page: 'geo', menuId: 'geo' });
 });
+/* Ruta nueva a Google Maps*/
+
 
  //Método POST
  router.post('/',function(req,res){
