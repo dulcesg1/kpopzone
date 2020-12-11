@@ -78,33 +78,68 @@ router.post('/add', function(req, res, next) {
            console.error();
            mensaje= 'Error: '+ error;
         }
+      
         console.log(JSON.parse(body)+mensaje);
         let escritos=JSON.parse(body);
-        if(escritos && escritos!=""){
-            mensaje="El numero de id ya esta registrado";
+        if(escritos==null || escritos==""){
+            request.get({ url: "http://localhost:4000/autor/"+Id_Autor }, (error, response, body)=>{
+                console.log("Autor"+JSON.parse(body));
+        let autor=JSON.parse(body);
+        console.log(autor);
+        if(autor==null || autor==""){
+                mensaje= '';
+                if(error){ // En caso de que surga un error
+                   console.error();
+                   mensaje= 'Error: '+ error;
+                }
+              
+            mensaje="El numero de id autor no esta registrado";
+           
+            }else{
+                request.get({ url: "http://localhost:4000/libro/"+Id_Libro }, (error, response, body)=>{
+                    console.log("Libro: "+JSON.parse(body));
+            let libro=JSON.parse(body);
+            console.log(libro);
+            if(libro==null || libro==""){
+                mensaje= '';
+                if(error){ // En caso de que surga un error
+                   console.error();
+                   mensaje= 'Error: '+ error;
+                }
+              
+            mensaje="El numero de id libro no esta registrado";
+            }else{
+                console.log("Dontro else esscrito");
+                request.post({ url: "http://localhost:4000/escritos", json: datosForma },
+                (error, response, body) => {
+               
+               mensaje = 'El dato se ha agregado con éxito';
+               if (error) {
+               console.log(error);
+               mensaje = 'Error: ' + error;
+               }
+               console.log(response);
+               res.redirect('/escritos'); //Redirige a Listado de escritos
+               });
+            }
+       
+        });
+            }
+        });  
+        }else{
+            mensaje="El numero de id escrito ya existe";
             res.render('escritos/add',{
                 mensaje:mensaje,
-                tittle: ' Add escritos',
-                Id_Escrito:'',// Datos del escritos
+                tittle: 'Agregar un escrito', // Título de la página
+                Id_Escrito:'',// Datos del escrito
                 Id_Autor: '',
                 Id_Libro: '',
                 Descripcion:'',
                 ISBN:'',
                 menuId: 'escritos',
-                page: 'escritos'
-                });
-        }else{
-            request.post({ url: "http://localhost:4000/escritos", json: datosForma },
-            (error, response, body) => {
-           
-           mensaje = 'El dato se ha agregado con éxito';
-           if (error) {
-           console.log(error);
-           mensaje = 'Error: ' + error;
-           }
-           console.log(response);
-           res.redirect('/escritos'); //Redirige a Listado de escritos
-           });
+                page: 'escritos',
+        
+            });
            }
            });
         }
